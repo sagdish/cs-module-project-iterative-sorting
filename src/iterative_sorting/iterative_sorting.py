@@ -31,7 +31,7 @@ def bubble_sort(arr):
             if arr[i] > arr[j]:
                 arr[i], arr[j] = arr[j], arr[i]
                 swapped = True
-                
+
     return arr
 
 '''
@@ -51,8 +51,33 @@ buckets.
 
 What is the time and space complexity of the counting sort algorithm?
 '''
-def counting_sort(arr, maximum=None):
-    # Your code here
+def count_sort(arr, maximum=None):
+    maximum = 0
+    for el in arr:
+        if el < 0:
+            return "Error, negative numbers not allowed in Count Sort"
 
+        if (el > maximum):
+            maximum = el 
+
+    counts = [0] * (maximum + 1)
+
+    for el in arr:
+        counts[el] += 1
+    
+    newIndex = 0
+    for el in enumerate(counts):
+        i, count = el
+
+        while count > 0:
+            arr[newIndex] = i
+            newIndex += 1
+            count -= 1
 
     return arr
+
+
+sample = [3, 4, 1, 8, 3, 8, 34, -32, -2, 21, 8, 1, 0, 34, 32]
+test = count_sort(sample)
+
+print(test)
